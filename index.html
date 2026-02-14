@@ -2,8 +2,8 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonsuz Aşk Serüveni - Çok Fonksiyonlu Deneyim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sonsuz Aşk Serüveni - Mobil Deneyim</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
@@ -20,19 +20,14 @@
             background: radial-gradient(circle at top left, #fff0f3 0%, #ffe5ec 50%, #fbc4ab 100%);
             overflow: hidden;
             margin: 0;
-            height: 100vh;
+            height: 100dvh; /* Dinamik viewport height */
             perspective: 1200px;
             user-select: none;
             touch-action: manipulation;
         }
 
-        .romantic-font {
-            font-family: 'Dancing Script', cursive;
-        }
-
-        .premium-font {
-            font-family: 'Playfair Display', serif;
-        }
+        .romantic-font { font-family: 'Dancing Script', cursive; }
+        .premium-font { font-family: 'Playfair Display', serif; }
 
         /* Yağmur Objeleri */
         .heart-particle {
@@ -40,7 +35,6 @@
             cursor: pointer;
             z-index: 100;
             filter: drop-shadow(0 0 8px rgba(255,10,84,0.4));
-            user-select: none;
             pointer-events: auto;
             will-change: transform, top;
         }
@@ -53,31 +47,32 @@
         .spark {
             position: absolute;
             pointer-events: none;
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             z-index: 200;
-            animation: sparkle-burst 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-            box-shadow: 0 0 10px currentColor;
+            animation: sparkle-burst 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
         }
 
         @keyframes sparkle-burst {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; filter: brightness(1.5); }
-            70% { opacity: 0.9; }
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
             100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
         }
 
         .glass-container {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 4rem;
-            box-shadow: 0 40px 100px -20px rgba(255, 71, 126, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.5);
-            transform-style: preserve-3d;
-            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
-            max-height: 85vh;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 50px -10px rgba(255, 71, 126, 0.2);
+            width: 90%;
+            max-width: 450px;
+            max-height: 90dvh;
             overflow-y: auto;
+            padding: 2rem 1.5rem;
+            transform-style: preserve-3d;
+            scrollbar-width: none;
         }
 
         .glass-container::-webkit-scrollbar { display: none; }
@@ -85,63 +80,52 @@
         .btn-main {
             background: linear-gradient(135deg, var(--love-red), #ff7096);
             color: white;
-            box-shadow: 0 15px 35px -10px rgba(255, 10, 84, 0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px -5px rgba(255, 10, 84, 0.4);
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .btn-main:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 20px 45px -10px rgba(255, 10, 84, 0.6);
-        }
+        .btn-main:active { transform: scale(0.95); }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 71, 126, 0.3);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 71, 126, 0.2);
             color: var(--love-red);
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.6);
-            border-color: var(--love-red);
         }
 
         .section-active {
-            animation: slideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation: slideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(60px) rotateX(-10deg); }
-            to { opacity: 1; transform: translateY(0) rotateX(0); }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .counter-box {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 2rem;
-            padding: 1.5rem;
-            margin: 0.5rem;
-            min-width: 95px;
-            box-shadow: 0 10px 20px -5px rgba(255, 71, 126, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .counter-box:hover { transform: translateY(-5px); }
-
-        .game-card {
-            width: 75px;
-            height: 75px;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.9);
             border-radius: 1.2rem;
+            padding: 0.8rem;
+            margin: 0.3rem;
+            min-width: 70px;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.05);
+        }
+
+        /* Oyun Kartları Mobil Boyut */
+        .game-card {
+            width: 65px;
+            height: 65px;
+            cursor: pointer;
+            background: white;
+            border-radius: 1rem;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .game-card.flipped { transform: rotateY(180deg) scale(1.05); }
+        .game-card.flipped { transform: rotateY(180deg); }
 
         .card-face {
             position: absolute;
@@ -151,48 +135,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 1.2rem;
+            border-radius: 1rem;
             overflow: hidden;
-            border: 1px solid rgba(255, 71, 126, 0.1);
         }
 
-        .card-front { background: white; font-size: 1.8rem; }
-        .card-back { transform: rotateY(180deg); background: #fff5f7; }
+        .card-front { font-size: 1.5rem; background: #fff; border: 1px solid #ffe5ec; }
+        .card-back { transform: rotateY(180deg); background: #fdf2f5; }
         .card-back img { width: 100%; height: 100%; object-fit: cover; }
 
         .music-bar {
-            height: 6px;
+            height: 4px;
             background: rgba(0,0,0,0.05);
             border-radius: 10px;
-            overflow: hidden;
-            width: 100px;
+            width: 60px;
         }
         .music-progress {
             height: 100%;
-            background: linear-gradient(to right, var(--love-red), var(--love-pink));
+            background: var(--love-red);
             width: 0%;
-            transition: width 0.1s linear;
         }
         
         .todo-item {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: 1px solid transparent;
-        }
-        .todo-item:hover { transform: translateX(10px); border-color: var(--soft-pink); }
-        .todo-item.done {
-            opacity: 0.6;
-            text-decoration: line-through;
-            background: rgba(241, 241, 241, 0.5);
-        }
-
-        .note-bubble {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(5px);
-            border-radius: 24px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(255, 71, 126, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
         }
 
         .floating-ui {
@@ -200,132 +165,135 @@
         }
         @keyframes floating {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Mobil Alt Bar Müzik Çalar */
+        .mobile-player {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 85%;
+            max-width: 320px;
         }
     </style>
 </head>
-<body class="flex items-center justify-center">
+<body class="flex items-center justify-center p-4">
 
     <div id="rain-container" class="fixed inset-0 pointer-events-none"></div>
 
-    <!-- MÜZİK ÇALAR -->
-    <div class="fixed bottom-8 left-8 z-50 bg-white/40 backdrop-blur-xl p-5 rounded-[2.5rem] shadow-2xl border border-white/50 flex items-center gap-5 transition-all hover:scale-105">
-        <button id="play-btn" onclick="toggleMusic()" class="w-12 h-12 bg-rose-500 text-white rounded-full flex items-center justify-center shadow-lg hover:rotate-12 transition-transform">
+    <!-- MÜZİK ÇALAR (Mobil Optimize) -->
+    <div class="mobile-player bg-white/60 backdrop-blur-2xl p-3 rounded-full shadow-xl border border-white/50 flex items-center gap-3 transition-all">
+        <button id="play-btn" onclick="toggleMusic()" class="w-10 h-10 bg-rose-500 text-white rounded-full flex items-center justify-center shadow-md active:scale-90">
             ▶
         </button>
-        <div class="hidden md:block">
-            <div class="text-[10px] uppercase font-black tracking-widest text-rose-500/70">BİZİM ŞARKIMIZ</div>
-            <div id="song-name" class="text-sm font-bold text-gray-800">Kıraç - Taş Duvarlar</div>
-            <div class="music-bar mt-2"><div id="music-progress" class="music-progress"></div></div>
+        <div class="flex-1 overflow-hidden">
+            <div id="song-name" class="text-[10px] font-bold text-gray-800 truncate">Kıraç - Taş Duvarlar</div>
+            <div class="music-bar mt-1"><div id="music-progress" class="music-progress"></div></div>
         </div>
         <audio id="bg-music" loop src="Kıraç - Taş Duvarlar [ Zerda ]  Konser Yolu Otobüsü.mp3"></audio>
     </div>
 
-    <div class="glass-container max-w-2xl w-full mx-4 p-10 md:p-16 text-center relative z-10">
+    <div class="glass-container text-center relative z-10">
         
         <!-- ADIM 1: GİRİŞ -->
         <div id="step-1" class="section">
-            <div class="text-9xl mb-10 floating-ui">💝</div>
-            <h1 class="premium-font italic text-6xl md:text-7xl text-gray-900 mb-6 leading-tight">Bir Ömür <br><span class="text-rose-600 romantic-font not-italic text-8xl">Seninle</span></h1>
-            <p class="text-rose-900/70 text-lg mb-12 font-medium tracking-wide">Anılarımızın, hayallerimizin ve sevgimizin dijital evi.</p>
-            <button onclick="goToStep(2)" class="btn-main px-14 py-6 rounded-full font-bold tracking-[0.2em] uppercase text-xs">Serüveni Başlat</button>
+            <div class="text-7xl mb-6 floating-ui">💝</div>
+            <h1 class="premium-font italic text-4xl text-gray-900 mb-4 leading-tight">Bir Ömür <br><span class="text-rose-600 romantic-font not-italic text-6xl">Seninle</span></h1>
+            <p class="text-rose-900/70 text-sm mb-8 font-medium">Anılarımızın ve sevgimizin dijital evi.</p>
+            <button onclick="goToStep(2)" class="btn-main px-10 py-4 rounded-full font-bold tracking-widest uppercase text-[10px]">Serüveni Başlat</button>
         </div>
 
         <!-- ADIM 2: SAYAÇ -->
         <div id="step-2" class="section hidden">
-            <h2 class="romantic-font text-6xl text-rose-500 mb-12">Sonsuzluğa Giden Yol</h2>
-            <div class="flex flex-wrap justify-center mb-12" id="timer">
-                <div class="counter-box"><div id="days" class="text-4xl font-black text-gray-800">00</div><div class="text-[10px] uppercase mt-2 tracking-widest font-bold text-rose-400">Gün</div></div>
-                <div class="counter-box"><div id="hours" class="text-4xl font-black text-gray-800">00</div><div class="text-[10px] uppercase mt-2 tracking-widest font-bold text-rose-400">Saat</div></div>
-                <div class="counter-box"><div id="mins" class="text-4xl font-black text-gray-800">00</div><div class="text-[10px] uppercase mt-2 tracking-widest font-bold text-rose-400">Dakika</div></div>
-                <div class="counter-box"><div id="secs" class="text-4xl font-black text-rose-600">00</div><div class="text-[10px] uppercase mt-2 tracking-widest font-bold text-rose-400">Saniye</div></div>
+            <h2 class="romantic-font text-4xl text-rose-500 mb-8">Bizim Zamanımız</h2>
+            <div class="flex flex-wrap justify-center mb-8" id="timer">
+                <div class="counter-box"><div id="days" class="text-2xl font-black text-gray-800">00</div><div class="text-[8px] uppercase mt-1 tracking-widest font-bold text-rose-400">Gün</div></div>
+                <div class="counter-box"><div id="hours" class="text-2xl font-black text-gray-800">00</div><div class="text-[8px] uppercase mt-1 tracking-widest font-bold text-rose-400">Saat</div></div>
+                <div class="counter-box"><div id="mins" class="text-2xl font-black text-gray-800">00</div><div class="text-[8px] uppercase mt-1 tracking-widest font-bold text-rose-400">Dk</div></div>
+                <div class="counter-box"><div id="secs" class="text-2xl font-black text-rose-600">00</div><div class="text-[8px] uppercase mt-1 tracking-widest font-bold text-rose-400">Sn</div></div>
             </div>
-            <div class="max-w-md mx-auto bg-white/30 p-6 rounded-[2rem] border border-white/50 mb-10 text-rose-800 italic font-medium">
-                "Zaman seninleyken anlam kazanıyor, her saniyesi bir ömre bedel..."
+            <div class="bg-white/40 p-5 rounded-3xl border border-white/50 mb-8 text-rose-800 italic text-sm">
+                "Zaman seninleyken anlam kazanıyor sevgilim..."
             </div>
-            <div class="flex justify-center gap-6">
-                <button onclick="goToStep(1)" class="btn-secondary px-10 py-5 rounded-full font-bold text-sm">Geri</button>
-                <button onclick="goToStep(3)" class="btn-main px-14 py-5 rounded-full font-bold text-sm">Anılara Dön ✨</button>
+            <div class="flex flex-col gap-3">
+                <button onclick="goToStep(3)" class="btn-main w-full py-4 rounded-full font-bold text-xs uppercase">Anılara Dön ✨</button>
+                <button onclick="goToStep(1)" class="text-rose-400 text-[10px] font-bold uppercase tracking-widest">Geri Git</button>
             </div>
         </div>
 
         <!-- ADIM 3: OYUN -->
         <div id="step-3" class="section hidden">
-            <h2 class="romantic-font text-6xl text-rose-600 mb-8">Anı Eşleştirme</h2>
-            <p class="text-gray-500 mb-8 text-sm uppercase tracking-widest font-bold">Resimleri eşleştirerek devam et</p>
-            <div id="game-board" class="grid grid-cols-4 gap-4 justify-items-center max-w-sm mx-auto mb-12"></div>
-            <button onclick="goToStep(2)" class="btn-secondary px-10 py-4 rounded-full font-bold text-sm">Geri Dön</button>
+            <h2 class="romantic-font text-4xl text-rose-600 mb-4">Anı Eşleştirme</h2>
+            <p class="text-gray-400 mb-6 text-[10px] uppercase tracking-widest font-bold">Resimleri eşleştir</p>
+            <div id="game-board" class="grid grid-cols-4 gap-2 justify-items-center mb-8"></div>
+            <button onclick="goToStep(2)" class="btn-secondary w-full py-3 rounded-full font-bold text-xs">Geri Dön</button>
         </div>
 
         <!-- ADIM: QUIZ -->
         <div id="step-quiz" class="section hidden">
-            <h2 class="romantic-font text-6xl text-rose-600 mb-10">Küçük Bir Test</h2>
-            <div id="quiz-container" class="bg-white/60 backdrop-blur-md p-10 rounded-[3rem] shadow-sm text-left mb-10 border border-white/80">
-                <p id="quiz-question" class="text-2xl premium-font italic font-bold text-gray-800 mb-8"></p>
-                <div id="quiz-options" class="grid gap-4"></div>
+            <h2 class="romantic-font text-4xl text-rose-600 mb-6">Küçük Bir Test</h2>
+            <div id="quiz-container" class="bg-white/80 p-6 rounded-[2rem] text-left mb-6 border border-white/80">
+                <p id="quiz-question" class="text-lg premium-font italic font-bold text-gray-800 mb-4"></p>
+                <div id="quiz-options" class="grid gap-3"></div>
             </div>
-            <p id="quiz-feedback" class="mb-6 font-black text-rose-600 animate-pulse"></p>
-            <button onclick="goToStep(3)" class="btn-secondary px-10 py-4 rounded-full font-bold">Bulmacaya Dön</button>
+            <p id="quiz-feedback" class="mb-4 text-sm font-bold text-rose-600"></p>
         </div>
 
         <!-- ADIM: BUCKET LIST -->
         <div id="step-bucket" class="section hidden">
-            <h2 class="romantic-font text-6xl text-rose-600 mb-10">Hayal Listemiz</h2>
-            <div class="grid gap-4 mb-12 max-w-md mx-auto">
-                <div onclick="this.classList.toggle('done')" class="todo-item bg-white/50 backdrop-blur p-5 rounded-3xl border border-white flex items-center gap-5 shadow-sm">
-                    <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center text-2xl">🌍</div> 
+            <h2 class="romantic-font text-4xl text-rose-600 mb-6">Hayal Listemiz</h2>
+            <div class="grid gap-3 mb-8">
+                <div onclick="this.classList.toggle('done')" class="todo-item bg-white/50 p-4 rounded-2xl border border-white flex items-center gap-3">
+                    <div class="w-8 h-8 bg-rose-100 rounded-xl flex items-center justify-center text-lg">🌍</div> 
                     <span class="font-bold text-gray-700">Paris'te gün doğumu</span>
                 </div>
-                <div onclick="this.classList.toggle('done')" class="todo-item bg-white/50 backdrop-blur p-5 rounded-3xl border border-white flex items-center gap-5 shadow-sm">
-                    <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center text-2xl">🏡</div> 
+                <div onclick="this.classList.toggle('done')" class="todo-item bg-white/50 p-4 rounded-2xl border border-white flex items-center gap-3">
+                    <div class="w-8 h-8 bg-rose-100 rounded-xl flex items-center justify-center text-lg">🏡</div> 
                     <span class="font-bold text-gray-700">Kendi bahçemizi kurmak</span>
                 </div>
-                <div onclick="this.classList.toggle('done')" class="todo-item bg-white/50 backdrop-blur p-5 rounded-3xl border border-white flex items-center gap-5 shadow-sm">
-                    <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center text-2xl">🎥</div> 
-                    <span class="font-bold text-gray-700">Açık hava sineması keyfi</span>
-                </div>
             </div>
-            <button onclick="goToStep('map')" class="btn-main px-14 py-5 rounded-full font-bold uppercase text-xs tracking-widest">Rotamızı Çizelim 📍</button>
+            <button onclick="goToStep('map')" class="btn-main w-full py-4 rounded-full font-bold uppercase text-[10px]">Rotamızı Çizelim 📍</button>
         </div>
 
         <!-- ADIM: HARİTA -->
         <div id="step-map" class="section hidden">
-            <h2 class="romantic-font text-6xl text-rose-600 mb-10">Bizim Yerimiz</h2>
-            <div class="bg-white/40 border border-white p-5 rounded-[3rem] mb-8 relative h-56 flex items-center justify-center overflow-hidden shadow-inner">
-                <div class="absolute inset-0 opacity-20 bg-[url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i12!2i2345!3i1567!2m3!1e0!2sm!3i420120488!3m8!2str!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!5f2')] bg-cover grayscale"></div>
+            <h2 class="romantic-font text-4xl text-rose-600 mb-6">Bizim Yerimiz</h2>
+            <div class="bg-white/60 p-3 rounded-[2rem] mb-6 relative h-40 flex items-center justify-center overflow-hidden">
                 <div class="z-10 text-center">
-                    <div class="text-6xl mb-2 drop-shadow-xl animate-bounce">📍</div>
-                    <div class="font-black text-rose-600 uppercase tracking-tighter text-xl">Kalbim Burada</div>
+                    <div class="text-4xl mb-1 animate-bounce">📍</div>
+                    <div class="font-black text-rose-600 uppercase text-sm">Kalbim Burada</div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mb-8">
-                <div class="note-bubble italic font-medium">"Dünyanın neresinde olursak olalım, evim senin yanın."</div>
-                <div class="note-bubble italic font-medium">"Sana bakınca tüm dertlerimi unutuyorum."</div>
+            <div class="text-xs italic text-rose-900 mb-8 leading-relaxed">
+                "Dünyanın neresinde olursak olalım, evim senin yanın."
             </div>
-            <button onclick="goToStep(4)" class="btn-main px-14 py-5 rounded-full font-bold">Son Hediyen ❤️</button>
+            <button onclick="goToStep(4)" class="btn-main w-full py-4 rounded-full font-bold text-xs uppercase">Son Hediyen ❤️</button>
         </div>
 
         <!-- ADIM 4: DUYGU -->
         <div id="step-4" class="section hidden">
-            <h2 class="premium-font italic text-5xl text-gray-900 mb-12">Kalbinden Neler Geçiyor?</h2>
-            <div class="flex flex-col md:flex-row gap-8 mb-12">
-                <button onclick="finalGift('miss')" class="flex-1 bg-white/60 backdrop-blur-xl border-2 border-transparent p-10 rounded-[3.5rem] hover:border-rose-500 hover:shadow-2xl transition-all group">
-                    <span class="text-6xl block mb-6 group-hover:scale-110 transition-transform">💌</span>
-                    <span class="text-2xl font-black text-rose-600 block uppercase tracking-tight">Özledim</span>
+            <h2 class="premium-font italic text-3xl text-gray-900 mb-8">Neler Geçiyor?</h2>
+            <div class="grid gap-4 mb-8">
+                <button onclick="finalGift('miss')" class="bg-white/80 p-8 rounded-[2rem] border-2 border-transparent hover:border-rose-500 active:scale-95 transition-all">
+                    <span class="text-5xl block mb-2">💌</span>
+                    <span class="text-sm font-black text-rose-600 uppercase">Özledim</span>
                 </button>
-                <button onclick="finalGift('lucky')" class="flex-1 bg-white/60 backdrop-blur-xl border-2 border-transparent p-10 rounded-[3.5rem] hover:border-rose-500 hover:shadow-2xl transition-all group">
-                    <span class="text-6xl block mb-6 group-hover:scale-110 transition-transform">🍀</span>
-                    <span class="text-2xl font-black text-rose-600 block uppercase tracking-tight">Şanslıyım</span>
+                <button onclick="finalGift('lucky')" class="bg-white/80 p-8 rounded-[2rem] border-2 border-transparent hover:border-rose-500 active:scale-95 transition-all">
+                    <span class="text-5xl block mb-2">🍀</span>
+                    <span class="text-sm font-black text-rose-600 uppercase">Şanslıyım</span>
                 </button>
             </div>
         </div>
 
         <!-- ADIM 5: FİNAL -->
         <div id="step-5" class="section hidden">
-            <div id="final-emoji" class="text-9xl mb-10 floating-ui">✨</div>
-            <h2 id="final-title" class="romantic-font text-7xl text-rose-600 mb-8"></h2>
-            <div id="final-text" class="bg-white/80 p-10 rounded-[3rem] border-t-8 border-rose-500 shadow-2xl italic text-rose-900 text-2xl mb-12 leading-relaxed"></div>
-            <button onclick="goToStep(1)" class="btn-secondary px-12 py-5 rounded-full font-bold">Yolculuğa Baştan Başla</button>
+            <div id="final-emoji" class="text-7xl mb-6 floating-ui">✨</div>
+            <h2 id="final-title" class="romantic-font text-4xl text-rose-600 mb-6"></h2>
+            <div id="final-text" class="bg-white p-6 rounded-[2rem] border-t-4 border-rose-500 shadow-xl italic text-rose-900 text-lg mb-8 leading-relaxed"></div>
+            <button onclick="goToStep(1)" class="btn-secondary w-full py-4 rounded-full font-bold text-xs">Baştan Başla</button>
         </div>
     </div>
 
@@ -333,7 +301,6 @@
         const rainContainer = document.getElementById('rain-container');
         const heartIcons = ['❤️', '💖', '💗', '💕', '🌹', '✨', '💎', '🌸'];
         
-        // Yeni, çalışan görsel URL'leri (Unsplash üzerinden yüksek kaliteli ve romantik görseller)
         const memoryImages = [
             "indir (1).jpg",
             "indir (2).jpg",
@@ -341,7 +308,6 @@
             "indir (4).jpg"
         ];
 
-        // MÜZİK KONTROLÜ
         const music = document.getElementById('bg-music');
         const playBtn = document.getElementById('play-btn');
         const musicProg = document.getElementById('music-progress');
@@ -355,27 +321,23 @@
                     music.pause();
                     playBtn.innerText = '▶';
                 }
-            } catch (err) {
-                console.log("Müzik oynatma hatası engellendi:", err);
-            }
+            } catch (err) { console.log(err); }
         }
 
         music.ontimeupdate = () => {
             if (music.duration) {
-                const perc = (music.currentTime / music.duration) * 100;
-                musicProg.style.width = perc + '%';
+                musicProg.style.width = (music.currentTime / music.duration) * 100 + '%';
             }
         };
 
-        // YAĞMUR
         function createHeart(x = null, y = null, isChild = false) {
             const heart = document.createElement('div');
             heart.className = 'heart-particle';
             heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
             heart.style.left = x !== null ? x + 'px' : (Math.random() * 95) + 'vw';
             const startY = y !== null ? y : -50;
-            const size = isChild ? (Math.random() * 20 + 15) : (Math.random() * 25 + 20);
-            const duration = isChild ? (Math.random() * 2 + 1.5) : (Math.random() * 3 + 4);
+            const size = isChild ? (Math.random() * 15 + 10) : (Math.random() * 20 + 15);
+            const duration = isChild ? (Math.random() * 1.5 + 1) : (Math.random() * 3 + 4);
             heart.style.top = startY + 'px';
             heart.style.fontSize = size + 'px';
             heart.style.opacity = Math.random() * 0.4 + 0.6;
@@ -396,43 +358,29 @@
             setTimeout(() => { if(heart.parentNode) heart.remove(); }, duration * 1000);
         }
 
-        // PATLAMA
         function explodeAndMultiply(x, y) {
-            const colors = ['#ff0a54', '#ff477e', '#ff85a1', '#ffd166', '#ffffff', '#ffd1d1'];
-            for (let i = 0; i < 28; i++) {
+            const colors = ['#ff0a54', '#ff477e', '#ff85a1', '#ffd166', '#ffffff'];
+            for (let i = 0; i < 15; i++) {
                 const s = document.createElement('div');
                 s.className = 'spark';
-                s.style.color = colors[Math.floor(Math.random()*colors.length)];
-                s.style.backgroundColor = 'currentColor';
+                s.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
                 s.style.left = x + 'px';
                 s.style.top = y + 'px';
-                
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 280 + 60;
-                const tx = Math.cos(angle) * distance;
-                const ty = Math.sin(angle) * distance;
-                
-                s.style.setProperty('--tx', `${tx}px`);
-                s.style.setProperty('--ty', `${ty}px`);
-                
+                const distance = Math.random() * 150 + 50;
+                s.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+                s.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
                 document.body.appendChild(s);
-                setTimeout(() => s.remove(), 1200);
+                setTimeout(() => s.remove(), 800);
             }
-            
-            for (let i = 0; i < 5; i++) {
-                createHeart(x + (Math.random()-0.5)*150, y + (Math.random()-0.5)*150, true);
-            }
+            for (let i = 0; i < 3; i++) createHeart(x, y, true);
         }
-        setInterval(() => createHeart(), 1000);
+        setInterval(() => createHeart(), 1500);
 
-        // GEÇİŞLER
         function goToStep(n) {
             const sections = document.querySelectorAll('.section');
-            sections.forEach(s => {
-                s.classList.add('hidden');
-                s.classList.remove('section-active');
-            });
-            const id = (typeof n === 'string' && isNaN(n)) ? 'step-' + n : 'step-' + n;
+            sections.forEach(s => { s.classList.add('hidden'); s.classList.remove('section-active'); });
+            const id = (typeof n === 'string') ? 'step-' + n : 'step-' + n;
             const next = document.getElementById(id);
             if (next) {
                 next.classList.remove('hidden');
@@ -446,29 +394,20 @@
         const start = new Date("February 14, 2024 00:00:00").getTime();
         function startTimer() {
             const update = () => {
-                const now = new Date().getTime();
-                const diff = now - start;
-                const dElem = document.getElementById('days');
-                const hElem = document.getElementById('hours');
-                const mElem = document.getElementById('mins');
-                const sElem = document.getElementById('secs');
-                
-                if (dElem) dElem.innerText = Math.floor(diff / 86400000).toString().padStart(2, '0');
-                if (hElem) hElem.innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
-                if (mElem) mElem.innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-                if (sElem) sElem.innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+                const diff = new Date().getTime() - start;
+                document.getElementById('days').innerText = Math.floor(diff / 86400000).toString().padStart(2, '0');
+                document.getElementById('hours').innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+                document.getElementById('mins').innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+                document.getElementById('secs').innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
             };
             setInterval(update, 1000); update();
         }
 
-        // OYUN
         let flipped = [];
         let matched = 0;
         function setupGame() {
             const board = document.getElementById('game-board');
-            if(!board) return;
-            board.innerHTML = '';
-            matched = 0;
+            board.innerHTML = ''; matched = 0; flipped = [];
             let gameImages = [...memoryImages, ...memoryImages].sort(() => Math.random() - 0.5);
             gameImages.forEach((imgSrc) => {
                 const card = document.createElement('div');
@@ -481,8 +420,7 @@
                         flipped.push(card);
                         if (flipped.length === 2) {
                             if (flipped[0].dataset.img === flipped[1].dataset.img) {
-                                matched++;
-                                flipped = [];
+                                matched++; flipped = [];
                                 if (matched === 4) setTimeout(() => goToStep('quiz'), 800);
                             } else {
                                 setTimeout(() => { flipped.forEach(c => c.classList.remove('flipped')); flipped = []; }, 800);
@@ -494,28 +432,20 @@
             });
         }
 
-        // QUIZ
         const quizQuestions = [
             { q: "İlk buluşmamızda hava nasıldı?", a: ["Güneşli", "Yağmurlu", "Karlı"], c: 0 },
-            { q: "En çok hangi yemeği birlikte yemeyi seviyoruz?", a: ["Pizza", "Sushi", "Makarna"], c: 2 },
-            { q: "Bizim şarkımız hangisi olabilir?", a: ["Romantik Pop", "Jazz", "Akustik"], c: 0 }
+            { q: "En sevdiğimiz aktivite?", a: ["Film", "Yemek", "Yürüyüş"], c: 2 }
         ];
         let currentQ = 0;
-        function startQuiz() {
-            currentQ = 0;
-            showQuestion();
-        }
+        function startQuiz() { currentQ = 0; showQuestion(); }
         function showQuestion() {
             const data = quizQuestions[currentQ];
-            const qTitle = document.getElementById('quiz-question');
+            document.getElementById('quiz-question').innerText = data.q;
             const optDiv = document.getElementById('quiz-options');
-            if(!qTitle || !optDiv) return;
-
-            qTitle.innerText = data.q;
             optDiv.innerHTML = '';
             data.a.forEach((opt, i) => {
                 const b = document.createElement('button');
-                b.className = "p-5 border-2 border-rose-100 rounded-2xl hover:bg-rose-500 hover:text-white hover:border-rose-500 text-left transition-all font-bold text-gray-700";
+                b.className = "p-4 border border-rose-100 rounded-xl text-left text-sm font-bold text-gray-700 active:bg-rose-500 active:text-white";
                 b.innerText = opt;
                 b.onclick = () => {
                     if(i === data.c) {
@@ -523,46 +453,24 @@
                         if(currentQ < quizQuestions.length) showQuestion();
                         else goToStep('bucket');
                     } else {
-                        const feedback = document.getElementById('quiz-feedback');
-                        if(feedback) {
-                            feedback.innerText = "Tekrar dene sevgilim! 💖";
-                            setTimeout(() => feedback.innerText = "", 1500);
-                        }
+                        document.getElementById('quiz-feedback').innerText = "Tekrar dene sevgilim! 💖";
+                        setTimeout(() => document.getElementById('quiz-feedback').innerText = "", 1500);
                     }
                 };
                 optDiv.appendChild(b);
             });
         }
 
-        // FİNAL
         function finalGift(type) {
             const pool = type === 'miss' ? ["Her anımda sensin...", "Özlemek, sevmenin en derin hali."] : ["Şansım seninle güldü.", "Hayatımın en güzel tesadüfü sensin."];
-            const title = document.getElementById('final-title');
-            const text = document.getElementById('final-text');
-            const emoji = document.getElementById('final-emoji');
-            
-            if(title) title.innerText = type === 'miss' ? "Seni Özledim" : "Çok Şanslıyım";
-            if(text) text.innerText = pool[Math.floor(Math.random() * pool.length)];
-            if(emoji) emoji.innerHTML = type === 'miss' ? '💌' : '🍀';
-            
+            document.getElementById('final-title').innerText = type === 'miss' ? "Seni Özledim" : "Çok Şanslıyım";
+            document.getElementById('final-text').innerText = pool[Math.floor(Math.random() * pool.length)];
+            document.getElementById('final-emoji').innerHTML = type === 'miss' ? '💌' : '🍀';
             goToStep(5);
-            for(let i=0; i<25; i++) {
-                setTimeout(() => {
-                    const rx = Math.random() * window.innerWidth;
-                    const ry = Math.random() * window.innerHeight;
-                    explodeAndMultiply(rx, ry);
-                }, i * 120);
+            for(let i=0; i<15; i++) {
+                setTimeout(() => explodeAndMultiply(Math.random()*window.innerWidth, Math.random()*window.innerHeight), i*150);
             }
         }
-
-        document.addEventListener('mousemove', (e) => {
-            const container = document.querySelector('.glass-container');
-            if(container) {
-                const x = (window.innerWidth / 2 - e.pageX) / 80;
-                const y = (window.innerHeight / 2 - e.pageY) / 80;
-                container.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-            }
-        });
     </script>
 </body>
 </html>
